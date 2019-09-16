@@ -1,30 +1,40 @@
-import * as React from 'react';
 
-interface Person {
-    firstName: string;
-    /*lastName: string;
-    title: string;
-    email: string;
-    location: string;
-    icon: string;
-    hobbies: string[];
-    empID: number;
-    phone: string;*/
+import React, { Component } from 'react';
+import icon from './spooky.jpg';
+
+interface EmployeeProps {
+    employee: Object
 }
 
-export default class Employee extends React.Component<Person> {
-    static defaultPerson: Person = {
-        firstName: 'string'
-    /*lastName: 'string',
-    title: 'string',
-    email: 'string',
-    location: 'string',
-    icon: 'string',
-    hobbies: [],
-    empID: 1,
-    phone: 'string'*/
-    };
+class Employee extends Component<EmployeeProps, any> {
+    constructor(props: EmployeeProps){
+        super(props);
+        this.state = {
+            employee : props.employee        
+        };
+    }
+
     render() {
-    return <h1>Name: {this.props.firstName}</h1>;
-}
-};
+        const {employee} = this.state;
+
+            if (Object.keys(employee).length > 0) {
+
+                return(
+                    <div id="person">
+                        <div id="name">
+                            <img id="icon" src={employee.picture.thumbnail} alt={icon} height='56px' width='56px'/>
+                            {employee.name.first} {employee.name.last}
+                        </div>
+                        <div>Associate</div>
+                            <div id="info">{employee.email}</div>
+                    </div>
+                );
+            }
+
+            return <div>Invalid User</div>
+        }
+      
+    }
+  
+  
+  export default Employee;
