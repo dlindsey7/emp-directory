@@ -22,6 +22,7 @@ code {
   background: lightcyan;
 }
 
+/* Add in flex as a cheap way to handle browser resizing */
 #name {
   display: flex;
   text-transform: capitalize;
